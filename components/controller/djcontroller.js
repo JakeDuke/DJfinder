@@ -16,7 +16,7 @@ let controller = {
     update: function(id, key, newValue) {
         this.model.update(id, key, newValue);
         this.view.render(this.model.read_all());
-    },    
+    },  
     help: function() {
 		let operations = Object.keys(this);
 		this.view.render(operations);

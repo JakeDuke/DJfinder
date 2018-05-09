@@ -13,15 +13,11 @@ let model = {
     update: function(id, key, newValue) {
         let db = require('./db.json');
         let data = db.data;
+        let part = data[id];
+        part[key] = newValue;
+        db.data[id] = part;
         
-        let part = data[25];
-        let partParse = JSON.parse(part);
-        console.log(partParse);
-        partParse[key] = newValue;
-        console.log(partParse['name']);
-        // let obj = JSON.stringify(data);
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db);
-
         
     },
 
