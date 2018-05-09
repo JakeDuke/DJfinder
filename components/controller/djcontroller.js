@@ -1,11 +1,13 @@
-var model = require('../models/djmodel')
 
-var controller = {
+
+let controller = {
+    view: {},
+	model: {},
     add_artist: function(name) {
-        model.create(name);
-        console.log(model.read_all());
+        this.model.create(name);
+        this.view.render(this.model.read_all());
     }
 }
 
+module.exports = controller;
 
-controller.add_artist("JOn");

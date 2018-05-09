@@ -1,7 +1,7 @@
 let jsonfile = require('jsonfile');
 let path = require('path');
 
-var model = {
+let model = {
     
 	create: function(new_entry) {
         let db = require('./db.json');
@@ -15,7 +15,7 @@ var model = {
         let db = require('./db.json');
         return db.data
 
-    },   
+    }   
 };
 
 
