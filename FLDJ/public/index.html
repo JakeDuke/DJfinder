@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Frontend/Backend</title>
+  <meta name="description" content="Frontend/Backend">
+  <meta name="author" content="Final Project">
+
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="input-container">
+      <span>
+        <p>Name:</p>
+        <input id="inputName" type="text">
+      </span>
+      <span>
+        <p>Location:</p>
+        <input id="inputLocation" type="text">
+      </span>
+      <span>
+        <p>Price:</p>
+        <input id="inputPrice" type="text">
+      </span>
+      <span>
+        <p>Style:</p>
+        <input id="inputStyle" type="text">
+      </span>
+      <span>
+        <p>Dates:</p>
+        <input id="inputDates" type="text">
+      </span>
+      <span>
+        <p>About:</p>
+        <textarea id="textareaInput" rows="4" cols="50">
+          Some general info
+        </textarea>
+      </span>
+      <br>
+      <span>
+        <button id="subbtn" class="btn" onclick="handler.form_handler()">SUBMIT</button>
+      </span>
+    </div>
+    <div id="result"></div>
+</div>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./handler.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./view.js"></script>
+    <script src="./init.js"></script>
+</body>
+</html>

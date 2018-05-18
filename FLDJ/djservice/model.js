@@ -57,4 +57,4 @@ module.exports = model;
 
 
 
-model.create('Jon', 'Baghdad','1000', 'Funk', '1-5', 'Book me, baby')
+//model.create('Jon', 'Baghdad','1000', 'Funk', '1-5', 'Book me, baby')
