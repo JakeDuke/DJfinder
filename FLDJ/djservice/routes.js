@@ -17,6 +17,30 @@ router.post("/create", function(req, res) {
     res.send(artist)
 })
 
+router.post("/update", function(req, res) {
+    // clean user input
+
+    // call controller
+    let artist = req.body.newArtist;
+    let id = req.body.id;
+
+    model.update(id, artist);
+    // send response
+    res.send(artist)
+})
+
+router.post("/remove", function(req, res) {
+    // clean user input
+
+    // call controller
+    
+    let id = req.body.id;
+
+    model.remove(id);
+    // send response
+    res.send(id)
+})
+
 router.post("/:operation", (req, res) => {
 
     let operation = req.params.operation;

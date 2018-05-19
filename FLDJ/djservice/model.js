@@ -20,11 +20,12 @@ let model = {
         db.meta.nextID = db.meta.nextID + 1;
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db)
     },
-    update: function(id, key, newValue) {
+    update: function(id, newObject) {
         let db = require('./db.json');
         let data = db.data;
         let part = data[id];
-        part[key] = newValue;
+        part = newObject;
+        // db.data.part = part;
         db.data[id] = part;
         
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db);
@@ -56,5 +57,3 @@ let model = {
 module.exports = model;
 
 
-
-//model.create('Jon', 'Baghdad','1000', 'Funk', '1-5', 'Book me, baby')
