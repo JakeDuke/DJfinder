@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <title>Input Form</title>
+</head>
+<body>
+    <div id="app">
+        
+       <div>
+            <label for="name">Name:</label> <br />
+            <input type="text" name="name" v-model="artist.name">
+       </div>
+
+       <div>
+            <label for="location">Location:</label> <br />
+            <input type="text" name="location"  v-model="artist.location">
+       </div>
+
+       <div>
+            <label for="price">Price:</label> <br />
+            <input type="text" name="price"  v-model="artist.price">
+       </div>
+        
+       <div>
+            <label for="style">Style:</label> <br />
+            <input type="text" name="style"  v-model="artist.style">
+       </div>
+
+       <div>
+            <label for="dates">Dates:</label> <br />
+            <input type="text" name="dates"  v-model="artist.dates">
+       </div>
+
+     
+        <div>
+            <label for="about">About:</label> <br />
+            <textarea name="about" rows="4" cols="50"  v-model="artist.about">
+                    Some general info
+            </textarea>
+        </div>
+
+        <div>
+            <button id="submit" v-on:click="newArtist()">SUBMIT</button>
+        </div>
+
+        <div>
+            <button id="submit" v-on:click="getAllArtist()">GET ALL ARTISTS</button>
+        </div>
+
+        <item v-for="artist in artists" v-bind:artist="artist"></item>
+        
+    </div>
+
+    <script type="text/x-template" id="item-template">
+
+        <div class="card" style="width:400px;">
+            <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%; height:250px">
+            <div class="card-body">
+            <h4 class="card-title">{{artist}}</h4>
+                <p class="card-text" ></p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+        </div>
+
+    </script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

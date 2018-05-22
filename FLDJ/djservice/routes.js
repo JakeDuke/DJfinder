@@ -41,6 +41,12 @@ router.post("/remove", function(req, res) {
     res.send(id)
 })
 
+router.post("/read_all", function(req, res) {
+  
+    let db = model.read_all();
+    res.send(db)
+})
+
 router.post("/:operation", (req, res) => {
 
     let operation = req.params.operation;

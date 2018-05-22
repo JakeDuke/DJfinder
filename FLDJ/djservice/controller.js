@@ -9,6 +9,9 @@ let controller = {
 	},
 	remove: function(id) {
 		this.model.remove();
+	},
+	read_all: function() {
+		this.model.read_all()
 	}
 };
 

@@ -13,7 +13,12 @@ app.use(function(req, res, next) {
 	next()
 })
 
-app.use("/", express.static(path.join(__dirname + '/public')));
+// app.use("/", express.static(path.join(__dirname + '/public')));
+
+// let djservice = require("./djservice");
+// app.use("/api", djservice);
+
+app.use("/", express.static(path.join(__dirname + '/vue-input-form')));
 
 let djservice = require("./djservice");
 app.use("/api", djservice);
