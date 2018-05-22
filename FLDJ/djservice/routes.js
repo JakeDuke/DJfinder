@@ -38,7 +38,7 @@ router.post("/remove", function(req, res) {
 
     model.remove(id);
     // send response
-    res.send(id)
+    res.send(String(id))
 })
 
 router.post("/read_all", function(req, res) {

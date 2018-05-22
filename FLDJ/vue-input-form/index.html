@@ -51,7 +51,7 @@
             <button id="submit" v-on:click="getAllArtist()">GET ALL ARTISTS</button>
         </div>
 
-        <item v-for="artist in artists" v-bind:artist="artist"></item>
+        <item v-for="artist in artists" v-bind:artist="artist" :key="artist.key"></item>
         
     </div>
 
@@ -64,6 +64,7 @@
                 <p class="card-text" >{{artist.about}}</p>
                 <p class="card-text" >Price: {{artist.price}}</p>
                 <a href="#" class="btn btn-primary">See Profile</a>
+                <button class="btn btn-danger" v-on:click="removeArtist(artist.key)">Delete Profile</button> 
             </div>
         </div>
 

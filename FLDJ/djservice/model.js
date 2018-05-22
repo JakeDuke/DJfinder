@@ -16,6 +16,7 @@ let model = {
         let db = require('./db.json');
         let data = db.data;
         // data[db.meta.nextID] = new_entry;
+        newObject.key = db.meta.nextID;
         data[db.meta.nextID] = newObject;
         db.meta.nextID = db.meta.nextID + 1;
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db)
@@ -47,8 +48,8 @@ let model = {
     
     remove: function(index) {
         let db = require('./db.json');
-        let data = db.data;
-        delete data[index];
+        //let data = db.data;
+        delete db.data[index];
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db)
     }
 };

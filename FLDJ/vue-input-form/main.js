@@ -3,6 +3,7 @@ var vue = new Vue ({
     data: {
         artists: [],
         artist: {
+            key: undefined,
             name: undefined,
             location: undefined,
             price: undefined,
@@ -26,19 +27,22 @@ var vue = new Vue ({
             // let a_style = this.style;
             // let a_dates = this.dates;
             // let a_about = this.about;
-
+            
             this.axiosInstance.post('/create', {
             newArtist: this.artist   
             })
                 .then((responce) => {
                     console.log(responce.data);
                     this.resetForm();
+                    this.getAllArtist();
+                    
                 })
                 .catch((error) => {
                     if(error) {
                         console.log(error);
                     }
             })
+
             
         },
         updateArtist: function (id, newObject) {
@@ -57,30 +61,19 @@ var vue = new Vue ({
                     }
             })
         },
-        removeArtist: function (id) {
-            this.axiosInstance.post('/remove', {
-                   id: id
-                })
-                .then((responce) => {
-                    console.log(responce.data);
-                })
-                .catch((error) => {
-                    if(error) {
-                        console.log(error);
-                    }
-            })
-        },
         getAllArtist: function () {
             this.axiosInstance.post('/read_all', {
                 })
                 .then((responce) => {
 
-                    
+                    this.artists = [];
+
                     for (elem in responce.data) {
                         console.log(responce.data[elem]);
                         this.artists.push(responce.data[elem]);
                     }
                     console.log(this.artists);
+                    
                 })
                 .catch((error) => {
                     if(error) {
@@ -104,14 +97,32 @@ Vue.component('item', {
       }
     },
     computed: {
-
+        axiosInstance: function() {
+            return vue.axiosInstance;
+         }
     },
     methods: {
-      toggle: function () {
-        console.log|(this.props)
-        if (this.isFolder) {
-          this.open = !this.open
+        toggle: function () {
+            console.log|(this.props)
+            if (this.isFolder) {
+                this.open = !this.open
             }
+        },
+        removeArtist: function (id) {
+            this.axiosInstance.post('/remove', {
+                    id: id
+                })
+                .then((responce) => {
+                    console.log(responce.data);
+                    vue.getAllArtist();
+                    
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+                })
+                  
         }
     }       
 })
