@@ -75,7 +75,7 @@ var vue = new Vue ({
                 })
                 .then((responce) => {
 
-                    this.artists.push(responce.data);
+                    
                     for (elem in responce.data) {
                         console.log(responce.data[elem]);
                         this.artists.push(responce.data[elem]);

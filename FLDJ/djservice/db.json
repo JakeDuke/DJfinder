@@ -1,1 +1,1 @@
-{"meta":{"nextID":3,"name":"artists"},"data":{"0":"jon","1":"jake","2":"chris"}}
+{"meta":{"nextID":3,"name":"artists"},"data":{"0":{"name":"Chris","location":"Finland","price":"1000","style":"pop","dates":"wheever","about":"I'm too cool for you"},"1":{"name":"Jon","location":"USA","price":"priceless","style":"metal","dates":"10-12","about":"I'm too sexy for your party"},"2":{"name":"Evan","location":"Brussels","price":"5600 USD","style":"JS","dates":"August","about":"I can play for sandwiches"}}}
