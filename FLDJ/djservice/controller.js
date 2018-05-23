@@ -11,8 +11,10 @@ let controller = {
 		this.model.remove();
 	},
 	read_all: function() {
-		this.model.read_all()
-	}
+		this.model.read_all();
+	},
+	save: function(id, newValue) {
+		this.model.save();
 };
 
 module.exports = controller;
