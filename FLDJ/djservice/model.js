@@ -51,6 +51,15 @@ let model = {
         //let data = db.data;
         delete db.data[index];
         jsonfile.writeFileSync(path.join(__dirname, './db.json'), db)
+    },
+	
+    save: function(id, newObject) {
+        let db = require('./db.json')
+        let data = db.data;
+        let part = data[id];
+        part = newObject;
+        db.data[id] = part;
+        jsonfile.writeFileSync(path.join(__dirname, './db.json'), db)
     }
 };
 
