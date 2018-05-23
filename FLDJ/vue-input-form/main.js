@@ -46,6 +46,10 @@ var vue = new Vue ({
             
         },
         updateArtist: function (id, newObject) {
+            let inp = document.createElement('input');
+            let ab = document.getElementById('ab');
+            ab.appendChild(inp);
+
             console.log(id)
             console.log(newObject)
             this.axiosInstance.post('/update', {
@@ -123,6 +127,24 @@ Vue.component('item', {
                     }
                 })
                   
+        },
+        updateArtist: function (id, newObject) {
+            
+            console.log(id)
+            console.log(newObject)
+            this.axiosInstance.post('/update', {
+                   newArtist: newObject,
+                   id: id
+                })
+                .then((responce) => {
+                    console.log(responce.data);
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+            })
         }
+
     }       
 })

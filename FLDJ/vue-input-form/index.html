@@ -61,7 +61,10 @@
             <img class="card-img-top" src="./djdj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
             <h4 class="card-title">{{artist.name}}</h4>
-                <p class="card-text" >{{artist.about}}</p>
+                <p class="card-text" id="ab" >{{artist.about}}</p>
+                <input id="updateInput" type="text">
+                <button class="btn btn-danger" v-on:click="updateArtist()">Save About</button>
+                <button class="btn btn-info">Edit About</button>
                 <p class="card-text" >Price: {{artist.price}}</p>
                 <a href="#" class="btn btn-primary">See Profile</a>
                 <button class="btn btn-danger" v-on:click="removeArtist(artist.key)">Delete Profile</button> 
