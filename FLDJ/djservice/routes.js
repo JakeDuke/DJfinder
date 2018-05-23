@@ -51,6 +51,17 @@ router.post("/:operation", (req, res) => {
 
     let operation = req.params.operation;
     
+})
+
+router.post("/save", function (req, res) {
+    
+    let artist = req.body.saveArtist;
+    let id = req.body.id;
+
+    model.save(id,artist);
+
+    res.send(artist)
+
 });
 
 
