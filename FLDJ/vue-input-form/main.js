@@ -144,7 +144,21 @@ Vue.component('item', {
                         console.log(error);
                     }
             })
-        }
+        },
+        saveArtist: function (id, newObject) {
 
+        	console.log(id)
+        	console.log(newObject)
+        	this.axiosInstance.post('/save', {
+        		newArtist = newObject,
+        			id: id
+        	   })
+        	   .then((responce) => {
+        		console.log(responce.data);
+        	   })
+        	   .catch((error) => {
+        		if (error) {
+        			console.log(error);
+        		}
     }       
 })
