@@ -10,6 +10,15 @@ var vue = new Vue ({
             style: undefined,
             dates: undefined,
             about: undefined
+        },
+        currentArtist: {
+            key: 0,
+            name: "roger",
+            location: "detroit",
+            price: "round numbers",
+            style: "blues, delta",
+            dates: "through october",
+            about: "undefined"
         }
     },
     computed: {
@@ -88,6 +97,9 @@ var vue = new Vue ({
         resetForm: function() {
             Object.keys(this.artist).forEach( key => this.artist[key] = '');
         }
+    },
+    created: function (){
+        this.getAllArtist();
     }
 })
 
@@ -97,7 +109,7 @@ Vue.component('item', {
     props: ["artist"],
     data: function () {
       return {
-        
+        seen: true
       }
     },
     computed: {
@@ -128,8 +140,60 @@ Vue.component('item', {
                 })
                   
         },
-        updateArtist: function (id, newObject) {
+        updateArtist: function (key, newValue) {
             
+            console.log(key)
+            console.log(newValue)
+            this.axiosInstance.post('/update', {
+                   newArtist: newValue,
+                   id: key
+                })
+                .then((responce) => {
+                    console.log(responce.data.about);
+                    responce.data.about = this.artist.about
+                    // vue.getAllArtist();
+                    
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+            })
+        }
+
+    }       
+})
+
+Vue.component('user-profile', {
+    template: '#user-profile-template',
+    // props: ['name', 'location', 'price', 'style', 'dates', 'about'],
+    props: ["artist"],
+    data: function () {
+      return {
+        seen: true,
+        isSuccessful: true,
+        isError: false,
+        button: {
+            text: 'Edit',
+          }
+      }
+    },
+    computed: {
+        axiosInstance: function () {
+            return axios.create({
+                baseURL: 'http://localhost:3001/api',
+            })
+        }
+    },
+    methods: {
+        toggle: function () {
+            console.log|(this.props)
+            if (this.isFolder) {
+                this.open = !this.open
+            }
+        },
+        updateArtist: function (id, newObject) {
+
             console.log(id)
             console.log(newObject)
             this.axiosInstance.post('/update', {
@@ -144,7 +208,40 @@ Vue.component('item', {
                         console.log(error);
                     }
             })
-        }
+        },
+        toggleText: function() {
+            console.log('Hide')
+            this.button.text =  (this.button.text == 'Edit') ? 'Save' : 'Edit';
+
+          },
+          switchClick: function() {
+            if(this.isSuccessful && !this.isError)
+            {
+                this.isSuccessful = false;
+                this.isError = true;
+            }
+            else if(this.isError && !this.isSuccessful)
+            {
+                this.isError = false;
+                this.isSuccessful = true;
+            }
+        },
+        removeArtist: function (id) {
+            this.axiosInstance.post('/remove', {
+                    id: id
+                })
+                .then((responce) => {
+                    console.log(responce.data);
+                    vue.getAllArtist();
+                    
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+                })
+                  
+        },  
 
     }       
 })
