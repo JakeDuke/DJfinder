@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-on:setCurrentArtist="setCurrentArtist">
 
         <div>
             <label for="name">Name:</label>
@@ -62,7 +62,7 @@
 
         <item v-for="artist in artists" v-bind:artist="artist" :key="artist.key"></item>
 
-        <user-profile v-for="artist in artists" v-bind:artist="artist" :key="artist.key"></user-profile>
+        <user-profile v-bind:artist="currentArtist"></user-profile>
 
     </div>
 
@@ -74,7 +74,8 @@
                 <h4 class="card-title">{{artist.name}}</h4>
                 <p class="card-text" id="ab" v-show="seen">{{artist.about}}</p>
                 <p class="card-text">Price: {{artist.price}}</p>
-                <a href="#" class="btn btn-primary">See Profile</a>
+                <!-- <button class="btn btn-primary" v-on:click="renderProfile(artist.key)">See profile</button> -->
+                <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
             </div>
         </div>
 
@@ -82,8 +83,10 @@
 
     <script type="text/x-template" id="user-profile-template">
         <div>
-            <nav class="navbar navbar-light bg-light justify-content-between">
-                <a class="navbar-brand">DjFinder</a>
+            <nav class="navbar navbar-light bg-info justify-content-between">
+                <a class="navbar-brand">
+                    <img src="logo2.png" style="height:70px">
+                </a>
                 <button class="btn" 
                 v-bind:class="{ 'btn-outline-secondary': this.isSuccessful, 'btn-outline-danger': this.isError }"
                 type="submit"
@@ -102,12 +105,13 @@
 
                 <!-- USER PROFILE ROW STARTS-->
                 <div class="row">
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-3 col-sm-3 bg-light">
                         <h4>{{artist.name}}</h4>
                         <div class="user-wrapper">
                             <img style="width:100%" src="djdj.jpg" class="img-responsive" />
-                            <div class="description">
-
+                            <div class="mt-3 d-flex justify-content-around">
+                                <button class="btn btn-outline-info" style="width: 110px">Book Me</button>
+                                <button class="btn btn-outline-info">Send E-Mail</button>
                             </div>
                         </div>
                     </div>

@@ -12,13 +12,13 @@ var vue = new Vue ({
             about: undefined
         },
         currentArtist: {
-            key: 0,
-            name: "roger",
-            location: "detroit",
-            price: "round numbers",
-            style: "blues, delta",
-            dates: "through october",
-            about: "undefined"
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
         }
     },
     computed: {
@@ -29,6 +29,24 @@ var vue = new Vue ({
         }
     },
     methods: {
+        setCurrentArtist: function(id) {
+            // filter through allArtists
+            // get new current artist
+            // vue.artist = newArtist
+            // and the component will redraw automatically because it's bound
+            var result = this.artists.filter(function( obj ) {
+                return obj.key == id;
+              });
+            // this.currentArtist = result;
+            var resultik = result[0];
+            var lol = JSON.stringify(resultik);
+            var kek = JSON.stringify(this.currentArtist);
+            kek = lol;
+            var cheburek = JSON.parse(kek)
+              
+             console.log(cheburek);
+
+        },
         newArtist: function () {
             // let a_name = this.name;
             // let a_location = this.location;
@@ -55,8 +73,6 @@ var vue = new Vue ({
             
         },
         updateArtist: function (id, newObject) {
-            let inp = document.createElement('input');
-            let ab = document.getElementById('ab');
             ab.appendChild(inp);
 
             console.log(id)
@@ -94,6 +110,18 @@ var vue = new Vue ({
                     }
             })
         },
+        renderProfile: function(id) {
+            var result = vue.artists.filter(function( obj ) {
+                return obj.key == id;
+              });
+              var resultik = result[0];
+              var lol = JSON.stringify(resultik);
+              var kek = JSON.stringify(vue.currentArtist);
+              kek = lol;
+              var cheburek = JSON.parse(kek)
+              
+              console.log(cheburek);
+            },
         resetForm: function() {
             Object.keys(this.artist).forEach( key => this.artist[key] = '');
         }
@@ -124,6 +152,21 @@ Vue.component('item', {
                 this.open = !this.open
             }
         },
+        renderProfile: function() {
+            // var result = vue.artists.filter(function( obj ) {
+            //     return obj.key == id;
+            //   });
+            //   var resultik = result[0];
+            //   var lol = JSON.stringify(resultik);
+            //   var kek = JSON.stringify(vue.currentArtist);
+            //   kek = lol;
+            //   var cheburek = JSON.parse(kek)
+            //   console.log(cheburek);
+            console.log(this.artist.key)
+              this.$emit('setCurrentArtist', this.artist.key)
+
+        },
+
         removeArtist: function (id) {
             this.axiosInstance.post('/remove', {
                     id: id
