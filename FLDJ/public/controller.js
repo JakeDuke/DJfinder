@@ -43,5 +43,18 @@ let controller = {
                 }
         })
     },
-}
+    saveArtist: function (id, newObject) {
+        this.axios.post('/remove', {
+                id: id
+            })
+            .then((responce) => {
+            console.log(responce.data);
+            })
+            .catch((error) => {
+            if (error) {
+                console.log(error);
+            }
+        }
+             
+                 
 
